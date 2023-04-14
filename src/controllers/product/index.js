@@ -26,18 +26,18 @@ function createProducts(products) {
   return productList;
 }
 
-exports.getProducts = (req, res) => {
-  Product.find({}).exec((error, products) => {
-    if (error)
-      return res.status(400).json({ success: false, statusCode: 400, error });
-    if (products) {
-      const productList = createProducts(products);
-      res
-        .status(200)
-        .json({ success: true, statusCode: 200, data: productList });
-    }
-  });
-};
+// exports.getProducts = (req, res) => {
+//   Product.find({}).exec((error, products) => {
+//     if (error)
+//       return res.status(400).json({ success: false, statusCode: 400, error });
+//     if (products) {
+//       const productList = createProducts(products);
+//       res
+//         .status(200)
+//         .json({ success: true, statusCode: 200, data: productList });
+//     }
+//   });
+// };
 
 exports.createProduct = (req, res) => {
   const { name, price, description,description_detail,categoryId, quantity, discount } = req.body;
@@ -242,4 +242,37 @@ exports.searchProducts = (req, res) => {
       }
     }
   );
+};
+
+
+exports.getProducts = (req, res) => {
+  const page = req.query.page - 1;
+  const limit = req.query.limit;
+
+  if(page && limit) {
+    Product.find({}).skip(limit*page).limit(limit).exec((error, products) => {
+      if (error)
+        return res.status(400).json({ success: false, statusCode: 400, error });
+      if (products) {
+        const productList = createProducts(products);
+        res
+          .status(200)
+          .json({ success: true, statusCode: 200, data: productList });
+      }
+    });
+  }
+  else {
+    Product.find({}).exec((error, products) => {
+      if (error)
+        return res.status(400).json({ success: false, statusCode: 400, error });
+      if (products) {
+        const productList = createProducts(products);
+        res
+          .status(200)
+          .json({ success: true, statusCode: 200, data: productList });
+      }
+    });
+  }
+
+  
 };

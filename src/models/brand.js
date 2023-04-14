@@ -11,17 +11,12 @@ const brandSchema = new mongoose.Schema(
       // required: true,
       unique: true,
     },
-    // categoryId:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Category",
-    //     required: true,
-    // },
     brandImage: { type: String },
-    createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Admin",
-      // required: true,
-    },
+    // createdBy: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Admin",
+    //   // required: true,
+    // },
   },
   { timestamps: true }
 );

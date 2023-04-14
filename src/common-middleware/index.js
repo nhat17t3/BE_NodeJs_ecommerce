@@ -46,7 +46,7 @@ exports.requireSigninCustomer = (req, res, next) => {
       return res.status(400).json({ success: false, statusCode: 400, error: "Outdated Token" });
     }
   } else {
-    // return res.status(400).json({ success: false, statusCode: 400, error: "Authentication required" });
+    return res.status(400).json({ success: false, statusCode: 400, error: "Authentication required" });
   }
 
   next();

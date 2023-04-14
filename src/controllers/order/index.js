@@ -102,26 +102,26 @@ exports.getOrder = (req, res) => {
     .exec((error, order) => {
       if (error)
         return res.status(400).json({ success: false, statusCode: 400, error });
-      if (order) {
-        Address.findOne({
-          user: req.user._id,
-        }).exec((error, address) => {
-          if (error)
-            return res.status(400).json({
-              success: false,
-              statusCode: 400,
-              error,
-            });
-          order.address = address.address.find(
-            (adr) => adr._id.toString() == order.addressId.toString()
-          );
-          res.status(200).json({
-            success: true,
-            statusCode: 200,
-            order,
-          });
-        });
-      }
+      // if (order) {
+      //   Address.findOne({
+      //     user: req.user._id,
+      //   }).exec((error, address) => {
+      //     if (error)
+      //       return res.status(400).json({
+      //         success: false,
+      //         statusCode: 400,
+      //         error,
+      //       });
+      //     order.address = address.address.find(
+      //       (adr) => adr._id.toString() == order.addressId.toString()
+      //     );
+      //     res.status(200).json({
+      //       success: true,
+      //       statusCode: 200,
+      //       order,
+      //     });
+      //   });
+      // }
     });
 };
 exports.confirmShiped = async (req, res) => {

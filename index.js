@@ -8,7 +8,7 @@ const cors = require("cors");
 const adminRoutes = require("./src/routes/admin");
 const customerRoutes = require("./src/routes/customer");
 const categoryRoutes = require("./src/routes/category");
-const brandRoutes = require("./src/routes/brand");
+//const brandRoutes = require("./src/routes/brand");
 const productRoutes = require("./src/routes/product");
 const orderRoutes = require("./src/routes/order");
 
@@ -48,7 +48,7 @@ app.use("/public", express.static(path.join(__dirname, "src/uploads")));
 app.use("/api", adminRoutes);
 app.use("/api", customerRoutes);
 app.use("/api", categoryRoutes);
-app.use("/api", brandRoutes);
+//app.use("/api", brandRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 
